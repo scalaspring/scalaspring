@@ -3,7 +3,7 @@ package sample
 import akka.http.scaladsl.model.StatusCodes._
 import akka.http.scaladsl.testkit.ScalatestRouteTest
 import com.github.scalaspring.akka.http.AkkaStreamsAutoConfiguration
-import com.github.scalaspring.scalatest.TestContextManagement
+import com.github.scalaspring.test.scalatest.TestContextManagement
 import org.scalatest.{FlatSpec, Matchers}
 import org.springframework.context.annotation.{Configuration, Import}
 import org.springframework.test.context.ContextConfiguration

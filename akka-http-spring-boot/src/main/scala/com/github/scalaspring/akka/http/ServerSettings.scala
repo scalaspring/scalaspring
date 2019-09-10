@@ -27,8 +27,6 @@ class ServerSettings(
   @BeanProperty var interface: String = DefaultInterface,
   @BeanProperty var port: Int = DefaultPort) {
 
-  //def this() = this(interface = DefaultInterface, port = DefaultPort)
-
 }
 
 object ServerSettings {

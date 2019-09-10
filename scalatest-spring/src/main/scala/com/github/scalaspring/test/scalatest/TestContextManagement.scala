@@ -1,4 +1,4 @@
-package com.github.scalaspring.scalatest
+package com.github.scalaspring.test.scalatest
 
 import org.scalatest.{BeforeAndAfterAll, Suite}
 import org.springframework.core.annotation.{AnnotatedElementUtils, AnnotationAttributes}

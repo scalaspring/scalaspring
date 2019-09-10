@@ -70,6 +70,7 @@ ThisBuild / pomExtra                :=
 lazy val scalaspring = (project in file("."))
   .aggregate(
     `scalatest-spring`,
+    `akka-spring`,
     `akka-spring-boot`,
     `akka-http-spring-boot`,
     `akka-http-spring-boot-actuator`
@@ -107,6 +108,23 @@ lazy val `akka-spring-boot` = project
     ).map { _ % Test }
   )
 
+lazy val `akka-spring` = project
+  .dependsOn(`scalatest-spring` % Test)
+  .settings(
+    description         := "Scala-based integration of Akka with Spring.\nTwo-way Akka<->Spring configuration bindings provide configuration flexibility.",
+
+    // Compilation dependencies
+    libraryDependencies ++= Seq(
+      scalaLogging,
+      akkaActor,
+      springContext
+    ),
+    // Runtime dependencies
+    libraryDependencies += logbackClassic % Runtime,
+    // Test dependencies
+    libraryDependencies += akkaTestkit % Test
+  )
+
 lazy val `akka-http-spring-boot` = project
   .dependsOn(`akka-spring-boot`, `scalatest-spring` % Test)
   .settings(
@@ -116,10 +134,11 @@ lazy val `akka-http-spring-boot` = project
     libraryDependencies ++= Seq(
       akkaStream,
       akkaHttp,
-      akkaHttpSprayJson
+      akkaHttpSprayJson,
+      springBootStarter
     ),
     // Runtime dependencies
-    //libraryDependencies += logbackClassic % Runtime,
+    libraryDependencies += logbackClassic % Runtime,
     // Test dependencies
     libraryDependencies ++= Seq(
       springBootStarterTest,

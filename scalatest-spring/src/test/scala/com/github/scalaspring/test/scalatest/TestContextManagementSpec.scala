@@ -1,4 +1,4 @@
-package com.github.scalaspring.scalatest
+package com.github.scalaspring.test.scalatest
 
 import org.scalatest.{FlatSpec, Matchers}
 import org.springframework.beans.factory.annotation.Autowired

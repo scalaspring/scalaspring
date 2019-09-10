@@ -7,22 +7,19 @@ import akka.http.scaladsl.model.StatusCodes._
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server._
 import akka.http.scaladsl.unmarshalling.Unmarshal
-import com.github.scalaspring.scalatest.TestContextManagement
+import com.github.scalaspring.test.scalatest.TestContextManagement
 import com.typesafe.scalalogging.StrictLogging
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.{FlatSpec, Matchers}
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootContextLoader
+import org.springframework.boot.SpringBootConfiguration
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.{Bean, Import}
-import org.springframework.test.context.ContextConfiguration
 import resource._
 
 import scala.concurrent.duration._
 
-@ContextConfiguration(
-  loader = classOf[SpringBootContextLoader],
-  classes = Array(classOf[MultiServiceSpec.Configuration])
-)
+@SpringBootTest
 class MultiServiceSpec extends FlatSpec with TestContextManagement with AkkaStreamsAutowiredImplicits with Matchers with ScalaFutures with StrictLogging {
 
   implicit val patience = PatienceConfig((10.seconds))    // Allow time for server startup
@@ -54,7 +51,7 @@ class MultiServiceSpec extends FlatSpec with TestContextManagement with AkkaStre
 
 object MultiServiceSpec {
 
-  @Configuration
+  @SpringBootConfiguration
   @Import(Array(classOf[AkkaHttpServerAutoConfiguration]))
   class Configuration extends AkkaHttpServer with EchoService with ReverseService {
     @Bean

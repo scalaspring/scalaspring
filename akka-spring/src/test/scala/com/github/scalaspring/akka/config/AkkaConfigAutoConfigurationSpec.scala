@@ -7,13 +7,12 @@ import com.typesafe.config.{Config, ConfigFactory}
 import com.typesafe.scalalogging.StrictLogging
 import org.scalatest.{FlatSpec, Matchers}
 import org.springframework.beans.factory.annotation.{Autowired, Value}
-import org.springframework.boot.test.context.SpringBootContextLoader
 import org.springframework.context.annotation._
 import org.springframework.core.env.ConfigurableEnvironment
 import org.springframework.test.context.ContextConfiguration
 
 @ContextConfiguration(
-  loader = classOf[SpringBootContextLoader],
+  //loader = classOf[SpringBootContextLoader],
   classes = Array(classOf[AkkaConfigAutoConfigurationSpec.Configuration])
 )
 class AkkaConfigAutoConfigurationSpec extends FlatSpec with TestContextManagement with Matchers with StrictLogging {
@@ -66,7 +65,7 @@ object AkkaConfigAutoConfigurationSpec {
 
   val TEST_URL = new URL("http://google.com")
 
-  @Import(Array(classOf[AkkaConfigAutoConfiguration]))
+  //@Import(Array(classOf[AkkaConfigAutoConfiguration]))
   @PropertySource(Array("classpath:AkkaConfigAutoConfigurationSpec.properties"))
   @Configuration
   class Configuration {

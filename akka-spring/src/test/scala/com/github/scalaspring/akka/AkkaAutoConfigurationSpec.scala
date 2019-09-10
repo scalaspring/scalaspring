@@ -10,7 +10,6 @@ import com.typesafe.scalalogging.StrictLogging
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.{FlatSpec, Matchers}
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootContextLoader
 import org.springframework.context.annotation.{Bean, ComponentScan, Import}
 import org.springframework.stereotype.Component
 import org.springframework.test.context.ContextConfiguration
@@ -18,7 +17,7 @@ import org.springframework.test.context.ContextConfiguration
 import scala.concurrent.duration._
 
 @ContextConfiguration(
-  loader = classOf[SpringBootContextLoader],
+//  loader = classOf[SpringBootContextLoader],
   classes = Array(classOf[AkkaAutoConfigurationSpec.Configuration])
 )
 class AkkaAutoConfigurationSpec extends FlatSpec with TestContextManagement with Matchers with AskSupport with ScalaFutures with StrictLogging {
@@ -82,7 +81,7 @@ object AkkaAutoConfigurationSpec {
 
   @Configuration
   @ComponentScan
-  @Import(Array(classOf[AkkaAutoConfiguration]))
+  //@Import(Array(classOf[AkkaAutoConfiguration]))
   class Configuration extends ActorSystemConfiguration {
 
     @ActorBean
